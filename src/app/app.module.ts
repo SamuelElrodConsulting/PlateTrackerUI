@@ -18,13 +18,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { ToastrModule } from 'ngx-toastr';
+import { TankMeasurementComponent } from './tank-measurement/tank-measurement.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { TankMeasurementWidgetComponent } from './widgets/tank-measurement-widget/tank-measurement-widget.component';
 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'tankMeasurementTypes', component: TankMeasurmentNominalsComponent },
-  { path: 'tankMeasurementNominals', component: TankMeasurmentNominalsComponent}
+  { path: 'tankMeasurementTypes', component: TankMeasurmentTypesComponentComponent },
+  { path: 'tankMeasurementNominals', component: TankMeasurmentNominalsComponent},
+  { path: 'tankMeasurement', component: TankMeasurementComponent}
 ]
 
 @NgModule({
@@ -33,12 +38,15 @@ const routes: Routes = [
     TankMeasurmentTypesComponentComponent,
     HomeComponent,
     TankMeasurmentNominalsComponent,
-    NominalsWidgetComponent
+    NominalsWidgetComponent,
+    TankMeasurementComponent,
+    TankMeasurementWidgetComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(routes), HttpClientModule, FormsModule, BrowserAnimationsModule,
     MatTableModule, MatSortModule, MatIconModule, NgbModule, MatFormFieldModule, MatFormFieldModule,
-    MatSelectModule, MatInputModule, ToastrModule.forRoot()
+    MatSelectModule, MatInputModule, ToastrModule.forRoot(),
+    MatDatepickerModule, MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

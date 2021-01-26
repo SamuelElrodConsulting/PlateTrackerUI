@@ -7,6 +7,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .logo-link {
+    color: white;
+  }
+
   h1,
   h2,
   h3,
@@ -54,9 +58,10 @@
     display: flex;
     margin: 82px auto 32px;
     padding: 0 16px;
-    max-width: 960px;
+    /*max-width: 960px;*/
+    width: 100%;
     flex-direction: column;
-    align-items: center;
+    /*align-items: center;*/
   }
 
   svg.material-icons {
@@ -257,7 +262,7 @@
   }
 
 
-  /* Responsive Styles */
+  /* Responsive Styles */ 
   @media screen and (max-width: 767px) {
 
     .card-container > *:not(.circle-link) ,
@@ -284,8 +289,8 @@
     svg#rocket-smoke {
       display: none;
       visibility: hidden;
-    }
-  }
+    } 
+  } 
 
   .content-wrapper{
     padding: 30px;
