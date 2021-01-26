@@ -10,7 +10,7 @@ Run `ng serve --proxy-config proxy.json`
 
 The above command utilized a proxy.json file for development on localhost to easily communicate with the backend APi
 
-### proxy.json example###
+### proxy.json example
 
 Note that target will be localhost and the port the .net core server is running on
 
