@@ -1,0 +1,92 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirm Delete</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label>Are you sure you want to delete this Nominal?</label>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')" class="button-delete">Delete</button>
+    </div>
+  </ng-template>
+  
+
+<p *ngIf="!dataSource"><em>Loading...</em></p>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="tankMeasurementTankTypeName">
+    <th mat-header-cell *matHeaderCellDef> Tank Name</th>
+    <td mat-cell *matCellDef="let element"> {{element.tankMeasurementTankTypeName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tankMeasurementTypeName">
+        <th mat-header-cell *matHeaderCellDef> Measurement</th>
+        <td mat-cell *matCellDef="let element"> {{element.tankMeasurementTypeName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lowNominalValue">
+        <th mat-header-cell *matHeaderCellDef> Low Nominal Value </th>
+        <td mat-cell *matCellDef="let element">{{element.lowNominalValue}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="idealNominalValue">
+        <th mat-header-cell *matHeaderCellDef> Ideal Nominal Value </th>
+        <td mat-cell *matCellDef="let element"> {{element.idealNominalValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="highNominalValue">
+        <th mat-header-cell *matHeaderCellDef> High Nominal Value </th>
+        <td mat-cell *matCellDef="let element"> {{element.highNominalValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="uom">
+        <th mat-header-cell *matHeaderCellDef> Unit of Measure </th>
+        <td mat-cell *matCellDef="let element"> {{element.uom}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="minimumTestingFrequencyDays">
+        <th mat-header-cell *matHeaderCellDef> Min Testing (days)</th>
+        <td mat-cell *matCellDef="let element"> {{element.minimumTestingFrequencyDays}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="idealTestingFrequencyDays">
+        <th mat-header-cell *matHeaderCellDef> Ideal Testing (days) </th>
+        <td mat-cell *matCellDef="let element"> {{element.idealTestingFrequencyDays}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="updatedBy">
+        <th mat-header-cell *matHeaderCellDef> Updated By </th>
+        <td mat-cell *matCellDef="let element"> {{element.updatedBy}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="datetimeUpdated">
+        <th mat-header-cell *matHeaderCellDef> Updated Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.datetimeUpdated | date: 'MM/dd/yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> Edit </th>
+        <td mat-cell *matCellDef="let element" class="hover">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="edit(element)">edit</mat-icon>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element" class="hover">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="delete(element, content)">delete</mat-icon>
+        </td>
+    </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+    (click)="selectRow(row)"
+    [ngClass]="{'highlight': row.highlighted}"></tr>
+</table>

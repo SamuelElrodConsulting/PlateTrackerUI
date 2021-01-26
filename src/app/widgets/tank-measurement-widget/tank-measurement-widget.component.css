@@ -1,0 +1,68 @@
+.mat-column-edit {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 6% !important;
+    width: 6% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-align: center;
+    justify-content: flex-end;
+    color:blue;
+    word-break: break-word;
+    cursor: pointer;
+}
+
+
+.mat-column-delete {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 7% !important;
+    width: 7% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-align: center;
+    justify-content: flex-end;
+    color:red;
+    word-break: break-word;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+}
+
+.outside-nominal {
+    color:red;
+}
+
+.inside-nominal {
+    color:green;
+}
+
+.highlight {
+    background-color: gray;
+}
+
+.hover {
+    cursor: pointer;
+}
+
+.modal-body {
+    background-color: lightgray;
+}
+.modal-footer {
+    background-color:lightgray;
+}
+.modal-header {
+    background-color: red;
+    font-size:larger;
+    font-weight:bolder;
+}
+.button-delete {
+    background-color: darkgray;
+}
+
+.form-group {
+    font-weight: bold;
+    font-size:large;
+}

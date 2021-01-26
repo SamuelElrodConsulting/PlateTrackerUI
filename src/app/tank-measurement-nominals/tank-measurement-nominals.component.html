@@ -1,0 +1,154 @@
+<h1>Tank Measurement Nominals</h1>
+<p>Types of test with their nominal value range and ideal testing frequency.</p>
+<hr>
+<h3>Current Nominals</h3>
+<app-nominals-widget #nominalWidget (selectedNominalChanged)="selectedNominalChanged($event)"></app-nominals-widget>
+<div class="spacer"></div>
+<div class="row zero-out-margin">
+    <div class="col-md-5 add-tank-wrapper">
+        <h3>Add New Nominal</h3>
+        <hr>    
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field appearance="fill">
+                <mat-label>Tank Type</mat-label>
+                <mat-select [(value)]="newTankMeasurementTankTypeId">
+                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.tankMeasurementTankTypeId">
+                    {{tank.tankMeasurementTankTypeName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field appearance="fill">
+            <mat-label>Measurement Type</mat-label>
+            <mat-select [(value)]="newTankMeasurementTypeId">
+                <mat-option *ngFor="let measurement of measurementTypes" [value]="measurement.tankMeasurementTypeId">
+                    {{measurement.tankMeasurementTypeName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field>
+                <mat-label>Low Nominal Value</mat-label>
+                <input matInput value="0" [(ngModel)]="newLowNominalValue">
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field>
+                <mat-label>Ideal Nominal Value</mat-label>
+                <input matInput value="0" [(ngModel)]="newIdealNominalValue">
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field>
+                <mat-label>High Nominal Value</mat-label>
+                <input matInput value="0" [(ngModel)]="newHighNominalValue">
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field>
+                <mat-label>Min Testing (days)</mat-label>
+                <input matInput value="0" [(ngModel)]="newMinTestingDays">
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field>
+                <mat-label>Ideal Testing (days)</mat-label>
+                <input matInput value="0" [(ngModel)]="newIdealTestingDays">
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-2"></div>
+
+            <div class="col-md-4" (click)="addNewNominal()">
+                <div class="add-button"><span>Add</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 update-tank-wrapper" [hidden]="hideUpdatedNominalForm">
+        <h3>Update Selected Nominal</h3>
+        <hr>    
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field appearance="fill">
+                <mat-label>Tank Type</mat-label>
+                <mat-select [value]="updateTankMeasurementTankTypeId">
+                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.tankMeasurementTankTypeId">
+                    {{tank.tankMeasurementTankTypeName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field appearance="fill">
+            <mat-label>Measurement Type</mat-label>
+                <mat-select [value] = "updateTankMeasurementTypeId">
+                    <mat-option *ngFor="let measurement of measurementTypes" [value]="measurement.tankMeasurementTypeId">
+                    {{measurement.tankMeasurementTypeName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field>
+                <mat-label>Low Nominal Value</mat-label>
+                <input matInput value="0" [(ngModel)]="updateLowNominalValue">
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field>
+                <mat-label>Ideal Nominal Value</mat-label>
+                <input matInput value="0" [(ngModel)]="updateIdealNominalValue">
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field>
+                <mat-label>High Nominal Value</mat-label>
+                <input matInput value="0" [(ngModel)]="updateHighNominalValue">
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field>
+                <mat-label>Main Testing (days)</mat-label>
+                <input matInput value="0" [(ngModel)]="updateMinTestingDays">
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field>
+                <mat-label>Ideal Testing (days)</mat-label>
+                <input matInput value="0" [(ngModel)]="updateIdealTestingDays">
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <div class="update-button" (click)="updateNominal()"><span>Update</span></div>
+            </div>
+        </div>
+    </div>
+</div>

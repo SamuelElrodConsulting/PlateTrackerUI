@@ -1,0 +1,129 @@
+<h1>Tank Measurements</h1>
+<p>Measurements taken for tanks.
+<hr>
+<h3>Measurements</h3>
+<app-tank-measurement-widget #measurementWidget (selectedMeasurementChanged)="selectedMeasurementChanged($event)"></app-tank-measurement-widget>
+<div class="spacer"></div>
+<div class="row zero-out-margin">
+    <div class="col-md-5 add-tank-wrapper">
+        <h3>Add New Measurement</h3>
+        <hr>    
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field appearance="fill">
+                <mat-label>Tank Type</mat-label>
+                <mat-select [(value)]="newTankMeasurementTankTypeId">
+                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.tankMeasurementTankTypeId">
+                    {{tank.tankMeasurementTankTypeName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field appearance="fill">
+            <mat-label>Measurement Type</mat-label>
+            <mat-select [(value)]="newTankMeasurementTypeId">
+                <mat-option *ngFor="let measurement of measurementTypes" [value]="measurement.tankMeasurementTypeId">
+                    {{measurement.tankMeasurementTypeName + ' (' + measurement.uom+ ')'}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field>
+                <mat-label>Value</mat-label>
+                <input matInput value="0" [(ngModel)]="newValue">
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Employee</mat-label>
+                    <mat-select [(value)]="newEmployeeId">
+                        <mat-option *ngFor="let employee of employees" [value]="employee.employeeId">
+                            {{employee.employeeFirstName + ' ' + employee.employeeLastName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="newMeasurementDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>        
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-2"></div>
+            <div class="col-md-4" (click)="addMeasurement()">
+                <div class="add-button"><span>Add</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 update-tank-wrapper" [hidden]="hideUpateMeasurementForm">
+        <h3>Update Measurement</h3>
+        <hr>    
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field appearance="fill">
+                <mat-label>Tank Type</mat-label>
+                <mat-select [(value)]="updateTankMeasurementTankTypeId">
+                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.tankMeasurementTankTypeId">
+                    {{tank.tankMeasurementTankTypeName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field appearance="fill">
+            <mat-label>Measurement Type</mat-label>
+            <mat-select [(value)]="updateTankMeasurementTypeId">
+                <mat-option *ngFor="let measurement of measurementTypes" [value]="measurement.tankMeasurementTypeId">
+                    {{measurement.tankMeasurementTypeName + ' (' + measurement.uom+ ')'}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field>
+                <mat-label>Value</mat-label>
+                <input matInput value="0" [(ngModel)]="updateValue">
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Employee</mat-label>
+                    <mat-select [(value)]="updateEmployeeId">
+                        <mat-option *ngFor="let employee of employees" [value]="employee.employeeId">
+                            {{employee.employeeFirstName + ' ' + employee.employeeLastName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field></div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="updatePicker" [(ngModel)]="updateMeasurementDate">
+                    <mat-datepicker-toggle matSuffix [for]="updatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #updatePicker></mat-datepicker>
+                  </mat-form-field>        
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-2"></div>
+            <div class="col-md-3" (click)="updateMeasurement()">
+                <div class="add-button"><span>Update</span></div>
+            </div>
+        </div>
+    </div>
+</div>
