@@ -19,7 +19,7 @@ export class TankMeasurementWidgetComponent implements OnInit {
 
 
   constructor(private http: HttpClient, private toastr: ToastrService,  private modalService: NgbModal) { 
-    this.loadData();
+
   }
 
   async loadData() {
@@ -29,6 +29,24 @@ export class TankMeasurementWidgetComponent implements OnInit {
     }, error => console.error(error));
   }
   
+  async loadDataByTankType(tankTypeID: number) {
+    this.http.get<TankMeasurement[]>('/api/' + 'TankMeasurement/' + tankTypeID).subscribe(result => {
+      this.tankMeasurements = result;
+      console.log(result);
+    }, error => console.error(error));
+  }
+
+  async loadDataByTankTypeAndMeasurementType(tankTypeID: number, measurementTypeID: number) {
+    this.http.get<TankMeasurement[]>('/api/' + 'TankMeasurement/' + tankTypeID + "/" + measurementTypeID).subscribe(result => {
+      this.tankMeasurements = result;
+      console.log(result);
+    }, error => console.error(error));
+  }
+
+  async clearData() {
+    this.tankMeasurements = null;
+  }
+
   async edit(row: TankMeasurement) {
     var rowToToggleValue =!row.highlighted;
 

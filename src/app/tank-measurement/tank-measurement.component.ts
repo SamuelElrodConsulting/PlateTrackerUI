@@ -41,6 +41,10 @@ export class TankMeasurementComponent implements OnInit {
     this.loadData();
   }
 
+  ngAfterViewInit() {
+    this.measurementWidget.loadData();
+  }
+
   async loadData() {
     this.http.get<TankMeasurementType[]>('/api/' + 'TankMeasurementType').subscribe(result => {
       this.measurementTypes = result;

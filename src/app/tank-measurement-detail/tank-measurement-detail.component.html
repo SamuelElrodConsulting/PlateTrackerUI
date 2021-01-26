@@ -1,0 +1,25 @@
+<h1>Tank Measurements - Details</h1> 
+<div class="row selector-spacer">
+    <div class="col-md-2">
+        <mat-form-field appearance="fill">
+            <mat-label>Tank Type</mat-label>
+            <mat-select [value]="selectedTankMeasurementTankTypeId" (selectionChange)="loadDataFromTankSelection($event)">
+                <mat-option *ngFor="let tank of tankTypes" [value]="tank.tankMeasurementTankTypeId">
+                {{tank.tankMeasurementTankTypeName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="col-md-2">
+        <mat-form-field appearance="fill">
+        <mat-label>Measurement Type</mat-label>
+            <mat-select [value] = "selectedTankMeasurementTypeId" (selectionChange)="loadDataFromMeasurementTypeSelection($event)">
+                <mat-option *ngFor="let measurement of measurementTypes" [value]="measurement.tankMeasurementTypeId">
+                {{measurement.tankMeasurementTypeName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+<hr>
+<app-tank-measurement-widget #tankMeasurementsWidget></app-tank-measurement-widget>

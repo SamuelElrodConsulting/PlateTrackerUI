@@ -22,6 +22,7 @@ import { TankMeasurementComponent } from './tank-measurement/tank-measurement.co
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TankMeasurementWidgetComponent } from './widgets/tank-measurement-widget/tank-measurement-widget.component';
+import { TankMeasurementDetailComponent } from './tank-measurement-detail/tank-measurement-detail.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'tankMeasurementTypes', component: TankMeasurmentTypesComponentComponent },
   { path: 'tankMeasurementNominals', component: TankMeasurmentNominalsComponent},
-  { path: 'tankMeasurement', component: TankMeasurementComponent}
+  { path: 'tankMeasurement', component: TankMeasurementComponent},
+  { path:'tankMeasurementDetail', component:TankMeasurementDetailComponent}
 ]
 
 @NgModule({
@@ -40,7 +42,8 @@ const routes: Routes = [
     TankMeasurmentNominalsComponent,
     NominalsWidgetComponent,
     TankMeasurementComponent,
-    TankMeasurementWidgetComponent
+    TankMeasurementWidgetComponent,
+    TankMeasurementDetailComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(routes), HttpClientModule, FormsModule, BrowserAnimationsModule,
