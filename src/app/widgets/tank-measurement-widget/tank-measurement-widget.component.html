@@ -72,5 +72,9 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"
     (click)="selectRow(row)"
-    [ngClass]="{'highlight': row.highlighted}"></tr>
+    [ngClass]="{'highlight': row.highlighted}"
+    [matTooltip]="'Ideal Measurement Value: ' + row.idealNominalValue + ' ' + row.uom">
+  
+    >
+  </tr>
 </table>

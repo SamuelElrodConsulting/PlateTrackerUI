@@ -23,6 +23,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TankMeasurementWidgetComponent } from './widgets/tank-measurement-widget/tank-measurement-widget.component';
 import { TankMeasurementDetailComponent } from './tank-measurement-detail/tank-measurement-detail.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 const routes: Routes = [
@@ -49,7 +51,7 @@ const routes: Routes = [
     BrowserModule, RouterModule.forRoot(routes), HttpClientModule, FormsModule, BrowserAnimationsModule,
     MatTableModule, MatSortModule, MatIconModule, NgbModule, MatFormFieldModule, MatFormFieldModule,
     MatSelectModule, MatInputModule, ToastrModule.forRoot(),
-    MatDatepickerModule, MatNativeDateModule
+    MatDatepickerModule, MatNativeDateModule, NgxChartsModule, MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

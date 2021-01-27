@@ -34,7 +34,8 @@ export class TankMeasurementComponent implements OnInit {
   updateMeasurementDate: Date;
   updateTankMeasurementTypeId : number = null;
   updateTankMeasurementTankTypeId: number = null;
-
+  updateTankMeasurementId: number = null;
+  
   hideUpateMeasurementForm = true;
 
   constructor(private http: HttpClient, private toastr: ToastrService) {   
@@ -76,6 +77,7 @@ export class TankMeasurementComponent implements OnInit {
       this.updateTankMeasurement = '';
       this.updateTankMeasurementTypeId = measurement.tankMeasurementTypeId;
       this.updateTankMeasurementTankTypeId = measurement.tankMeasurementTankTypeId;
+      this.updateTankMeasurementId = measurement.tankMeasurementId;
       this.hideUpateMeasurementForm = false;
     }
   }
@@ -103,6 +105,7 @@ export class TankMeasurementComponent implements OnInit {
     updateMeasurement.value = this.updateValue;
     updateMeasurement.tankMeasurementEmployeeId = this.updateEmployeeId;
     updateMeasurement.tankMeasurementDatetime = this.updateMeasurementDate;
+    updateMeasurement.tankMeasurementId = this.updateTankMeasurementId;
     this.http.put<TankMeasurementTankType[]>('/api/' + 'TankMeasurement', updateMeasurement).subscribe(result => {
       this.measurementWidget.loadData();
       this.toastr.success('Success!', 'Measurement Successfully Updated!');

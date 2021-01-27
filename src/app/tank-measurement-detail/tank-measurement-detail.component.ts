@@ -6,6 +6,8 @@ import { TankMeasurementNominal } from '../models/tank-measurement-nominal';
 import { TankMeasurementTankType } from '../models/tank-measurement-tank-type';
 import { TankMeasurementType } from '../models/tank-measurement-type';
 import { TankMeasurementWidgetComponent } from '../widgets/tank-measurement-widget/tank-measurement-widget.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { multi } from './data';
 
 @Component({
   selector: 'app-tank-measurement-detail',
@@ -14,6 +16,27 @@ import { TankMeasurementWidgetComponent } from '../widgets/tank-measurement-widg
 })
 
 export class TankMeasurementDetailComponent implements OnInit {
+  multi: any[];
+  view: any[] = [700, 300];
+
+  // options
+  legend: boolean = true;
+  showLabels: boolean = true;
+  animations: boolean = true;
+  xAxis: boolean = true;
+  yAxis: boolean = true;
+  showYAxisLabel: boolean = true;
+  showXAxisLabel: boolean = true;
+  xAxisLabel: string = 'Year';
+  yAxisLabel: string = 'Population';
+  timeline: boolean = true;
+
+  colorScheme = {
+    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
+  };
+
+
+
   @ViewChild('tankMeasurementsWidget') tankMeasurementsWidget: TankMeasurementWidgetComponent;
 
   currentTank: TankMeasurementTankType;
@@ -33,6 +56,9 @@ export class TankMeasurementDetailComponent implements OnInit {
     http.get<TankMeasurementTankType[]>('/api/' + 'TankMeasurementTankType').subscribe(result => {
       this.tankTypes = result;
     }, error => console.error(error));
+
+    Object.assign(this, { multi });
+
   }
 
   async loadDataFromTankSelection(value: MatSelectChange) {
@@ -55,6 +81,19 @@ export class TankMeasurementDetailComponent implements OnInit {
 
   ngAfterViewInit(): void {
     //this.tankMeasurementsWidget.clearData();
+  }
+
+  
+  onSelect(data): void {
+    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+  }
+
+  onActivate(data): void {
+    console.log('Activate', JSON.parse(JSON.stringify(data)));
+  }
+
+  onDeactivate(data): void {
+    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 
 }
