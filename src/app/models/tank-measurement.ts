@@ -2,8 +2,8 @@ export class TankMeasurement {
      tankMeasurementId: number;
      tankMeasurementTypeId: number;
      tankeMeasurementTypeName: number;
-     tankMeasurementTankTypeId: number;
-     tankMeasurementTankTypeName: string;
+     TankTypeId: number;
+     TankTypeName: string;
      value: number;
      notes: string;
      tankMeasurementEmployeeId: number;

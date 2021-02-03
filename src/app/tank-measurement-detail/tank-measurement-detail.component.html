@@ -3,9 +3,9 @@
     <div class="col-md-2">
         <mat-form-field appearance="fill">
             <mat-label>Tank Type</mat-label>
-            <mat-select [value]="selectedTankMeasurementTankTypeId" (selectionChange)="loadDataFromTankSelection($event)">
-                <mat-option *ngFor="let tank of tankTypes" [value]="tank.tankMeasurementTankTypeId">
-                {{tank.tankMeasurementTankTypeName}}
+            <mat-select [value]="selectedTankTypeId" (selectionChange)="loadDataFromTankSelection($event)">
+                <mat-option *ngFor="let tank of tankTypes" [value]="tank.TankTypeId">
+                {{tank.TankTypeName}}
                 </mat-option>
             </mat-select>
         </mat-form-field>

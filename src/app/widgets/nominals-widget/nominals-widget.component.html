@@ -21,9 +21,9 @@
 <p *ngIf="!dataSource"><em>Loading...</em></p>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="tankMeasurementTankTypeName">
+    <ng-container matColumnDef="TankTypeName">
     <th mat-header-cell *matHeaderCellDef> Tank Name</th>
-    <td mat-cell *matCellDef="let element"> {{element.tankMeasurementTankTypeName}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.TankTypeName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="tankMeasurementTypeName">

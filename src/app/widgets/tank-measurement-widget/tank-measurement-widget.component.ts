@@ -11,7 +11,7 @@ import { TankMeasurement } from 'src/app/models/tank-measurement';
 })
 export class TankMeasurementWidgetComponent implements OnInit {
   tankMeasurements: TankMeasurement[];
-  displayedColumns: string[] =['TankeMeasurementTypeName', 'TankMeasurementTankTypeName',
+  displayedColumns: string[] =['TankeMeasurementTypeName', 'TankTypeName',
   'TankMeasurementDescription', 'Value', 'UOM', 'EmployeeName', 'TankMeasurementDatetime', 'edit', 'delete']
 
   public SelectedRow: TankMeasurement = null;

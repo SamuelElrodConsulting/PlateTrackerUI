@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { ToastrService } from 'ngx-toastr';
 import { TankMeasurementNominal } from '../models/tank-measurement-nominal';
-import { TankMeasurementTankType } from '../models/tank-measurement-tank-type';
+import { TankType } from '../models/tank-measurement-tank-type';
 import { TankMeasurementType } from '../models/tank-measurement-type';
 import { TankMeasurementWidgetComponent } from '../widgets/tank-measurement-widget/tank-measurement-widget.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -39,13 +39,13 @@ export class TankMeasurementDetailComponent implements OnInit {
 
   @ViewChild('tankMeasurementsWidget') tankMeasurementsWidget: TankMeasurementWidgetComponent;
 
-  currentTank: TankMeasurementTankType;
+  currentTank: TankType;
   currentMeasurement: TankMeasurementType;
 
-  selectedTankMeasurementTankTypeId: number;
+  selectedTankTypeId: number;
   selectedTankMeasurementTypeId: number;
 
-  tankTypes: TankMeasurementTankType [];
+  tankTypes: TankType [];
   measurementTypes: TankMeasurementType[];
 
   constructor(http: HttpClient, private toastr: ToastrService) {   
@@ -53,7 +53,7 @@ export class TankMeasurementDetailComponent implements OnInit {
       this.measurementTypes = result;
     }, error => console.error(error));
 
-    http.get<TankMeasurementTankType[]>('/api/' + 'TankMeasurementTankType').subscribe(result => {
+    http.get<TankType[]>('/api/' + 'TankType').subscribe(result => {
       this.tankTypes = result;
     }, error => console.error(error));
 
@@ -62,7 +62,7 @@ export class TankMeasurementDetailComponent implements OnInit {
   }
 
   async loadDataFromTankSelection(value: MatSelectChange) {
-    this.selectedTankMeasurementTankTypeId = value.value;   
+    this.selectedTankTypeId = value.value;   
     if(!this.selectedTankMeasurementTypeId) {
       this.tankMeasurementsWidget.loadDataByTankType(value.value);
     } else {
@@ -72,8 +72,8 @@ export class TankMeasurementDetailComponent implements OnInit {
 
   async loadDataFromMeasurementTypeSelection(value: MatSelectChange) {
     this.selectedTankMeasurementTypeId = value.value;
-    if(this.selectedTankMeasurementTankTypeId) {
-      this.tankMeasurementsWidget.loadDataByTankTypeAndMeasurementType(this.selectedTankMeasurementTankTypeId, value.value);
+    if(this.selectedTankTypeId) {
+      this.tankMeasurementsWidget.loadDataByTankTypeAndMeasurementType(this.selectedTankTypeId, value.value);
     }
   }
   ngOnInit(): void {

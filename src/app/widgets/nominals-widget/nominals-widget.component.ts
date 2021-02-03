@@ -19,7 +19,7 @@ export class NominalsWidgetComponent implements OnInit {
   public SelectedRow: TankMeasurementNominal = null;
   @Output() selectedNominalChanged = new EventEmitter<TankMeasurementNominal>();
 
-  displayedColumns: string[] =['tankMeasurementTankTypeName', 'tankMeasurementTypeName',
+  displayedColumns: string[] =['TankTypeName', 'tankMeasurementTypeName',
   'lowNominalValue', 'idealNominalValue', 'highNominalValue', 'uom',
   'minimumTestingFrequencyDays', 'idealTestingFrequencyDays',
   'updatedBy', 'datetimeUpdated', 'edit', 'delete' ]

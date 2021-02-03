@@ -4,5 +4,5 @@ export class Employee {
     EmployeeLastName: string;
     BuddyPunchId: string;
     CreatedBy: string;
-    CreatedDatetime: Date;
+    DatetimeCreated: Date;
 }

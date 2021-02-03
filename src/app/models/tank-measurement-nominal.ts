@@ -1,7 +1,7 @@
 export class TankMeasurementNominal {
     tankMeasurementNominalId: number;
-    tankMeasurementTankTypeId: number;
-    tankMeasurementTankTypeName: string
+    TankTypeId: number;
+    TankTypeName: string
     tankMeasurementTypeId: number;
     tankMeasurementTypeName: string;
     lowNominalValue: number;

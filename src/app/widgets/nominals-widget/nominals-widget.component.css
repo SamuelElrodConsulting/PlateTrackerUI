@@ -4,7 +4,7 @@ th {
 }
 
 
-.mat-column-tankMeasurementTankTypeName {
+.mat-column-TankTypeName {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 10% !important;

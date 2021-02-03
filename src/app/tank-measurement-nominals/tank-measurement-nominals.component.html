@@ -12,9 +12,9 @@
             <div class="col-md-3"></div><div class="col-md-3">
             <mat-form-field appearance="fill">
                 <mat-label>Tank Type</mat-label>
-                <mat-select [(value)]="newTankMeasurementTankTypeId">
-                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.tankMeasurementTankTypeId">
-                    {{tank.tankMeasurementTankTypeName}}
+                <mat-select [(value)]="newTankTypeId">
+                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.TankTypeId">
+                    {{tank.TankTypeName}}
                     </mat-option>
                 </mat-select>
             </mat-form-field></div>
@@ -86,9 +86,9 @@
             <div class="col-md-3"></div><div class="col-md-3">
             <mat-form-field appearance="fill">
                 <mat-label>Tank Type</mat-label>
-                <mat-select [value]="updateTankMeasurementTankTypeId">
-                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.tankMeasurementTankTypeId">
-                    {{tank.tankMeasurementTankTypeName}}
+                <mat-select [value]="updateTankTypeId">
+                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.TankTypeId">
+                    {{tank.TankTypeName}}
                     </mat-option>
                 </mat-select>
             </mat-form-field></div>

@@ -1,9 +1,9 @@
-export class TankMeasurementTankType {
+export class TankType {
     TankMeasurementId:number;
     TankMeasurementTypeId:number;
     TankeMeasurementTypeName:string;
-    TankMeasurementTankTypeId:number;
-    TankMeasurementTankTypeName:string;
+    TankTypeId:number;
+    TankTypeName:string;
     TankMeasurementDescription: string;
     Value:number;
     Notes:string;

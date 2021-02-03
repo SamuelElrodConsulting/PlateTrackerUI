@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Employee } from '../models/employee';
 import { TankMeasurement } from '../models/tank-measurement';
-import { TankMeasurementTankType } from '../models/tank-measurement-tank-type';
+import { TankType } from '../models/tank-measurement-tank-type';
 import { TankMeasurementType } from '../models/tank-measurement-type';
 import { TankMeasurementWidgetComponent } from '../widgets/tank-measurement-widget/tank-measurement-widget.component';
 
@@ -16,7 +16,7 @@ export class TankMeasurementComponent implements OnInit {
   @ViewChild('measurementWidget') measurementWidget: TankMeasurementWidgetComponent;
 
   measurementTypes: TankMeasurementType[];
-  tankTypes: TankMeasurementTankType[];
+  tankTypes: TankType[];
   employees: Employee[];
 
   newTankType = '';
@@ -25,7 +25,7 @@ export class TankMeasurementComponent implements OnInit {
   newEmployeeId = 0;
   newMeasurementDate: Date;
   newTankMeasurementTypeId : number = null;
-  newTankMeasurementTankTypeId: number = null;
+  newTankTypeId: number = null;
 
   updateTankType = '';
   updateTankMeasurement = '';
@@ -33,7 +33,7 @@ export class TankMeasurementComponent implements OnInit {
   updateEmployeeId = 0;
   updateMeasurementDate: Date;
   updateTankMeasurementTypeId : number = null;
-  updateTankMeasurementTankTypeId: number = null;
+  updateTankTypeId: number = null;
   updateTankMeasurementId: number = null;
   
   hideUpateMeasurementForm = true;
@@ -51,7 +51,7 @@ export class TankMeasurementComponent implements OnInit {
       this.measurementTypes = result;
     }, error => console.error(error));
 
-    this.http.get<TankMeasurementTankType[]>('/api/' + 'TankMeasurementTankType').subscribe(result => {
+    this.http.get<TankType[]>('/api/' + 'TankType').subscribe(result => {
       this.tankTypes = result;
     }, error => console.error(error));
 
@@ -68,7 +68,7 @@ export class TankMeasurementComponent implements OnInit {
       this.updateMeasurementDate = null;
       this.updateTankMeasurement = '';
       this.updateTankMeasurementTypeId = null;
-      this.updateTankMeasurementTankTypeId = null;
+      this.updateTankTypeId = null;
       this.hideUpateMeasurementForm = true;
     } else {
       this.updateValue = measurement.value;
@@ -76,7 +76,7 @@ export class TankMeasurementComponent implements OnInit {
       this.updateMeasurementDate = measurement.tankMeasurementDatetime;
       this.updateTankMeasurement = '';
       this.updateTankMeasurementTypeId = measurement.tankMeasurementTypeId;
-      this.updateTankMeasurementTankTypeId = measurement.tankMeasurementTankTypeId;
+      this.updateTankTypeId = measurement.TankTypeId;
       this.updateTankMeasurementId = measurement.tankMeasurementId;
       this.hideUpateMeasurementForm = false;
     }
@@ -86,12 +86,12 @@ export class TankMeasurementComponent implements OnInit {
   async addMeasurement() {
     var addMeasurement = new TankMeasurement();
     addMeasurement.tankMeasurementTypeId = this.newTankMeasurementTypeId;
-    addMeasurement.tankMeasurementTankTypeId = this.newTankMeasurementTankTypeId;
+    addMeasurement.TankTypeId = this.newTankTypeId;
     addMeasurement.value = this.newValue;
     addMeasurement.tankMeasurementEmployeeId = this.newEmployeeId;
     addMeasurement.tankMeasurementDatetime = this.newMeasurementDate;
 
-    this.http.post<TankMeasurementTankType[]>('/api/' + 'TankMeasurement', addMeasurement).subscribe(result => {
+    this.http.post<TankType[]>('/api/' + 'TankMeasurement', addMeasurement).subscribe(result => {
       this.measurementWidget.loadData();
       this.toastr.success('Success!', 'Measurement Successfully Added!');
       this.loadData();
@@ -101,12 +101,12 @@ export class TankMeasurementComponent implements OnInit {
   async updateMeasurement() {
     var updateMeasurement = new TankMeasurement();
     updateMeasurement.tankMeasurementTypeId = this.updateTankMeasurementTypeId;
-    updateMeasurement.tankMeasurementTankTypeId = this.updateTankMeasurementTankTypeId;
+    updateMeasurement.TankTypeId = this.updateTankTypeId;
     updateMeasurement.value = this.updateValue;
     updateMeasurement.tankMeasurementEmployeeId = this.updateEmployeeId;
     updateMeasurement.tankMeasurementDatetime = this.updateMeasurementDate;
     updateMeasurement.tankMeasurementId = this.updateTankMeasurementId;
-    this.http.put<TankMeasurementTankType[]>('/api/' + 'TankMeasurement', updateMeasurement).subscribe(result => {
+    this.http.put<TankType[]>('/api/' + 'TankMeasurement', updateMeasurement).subscribe(result => {
       this.measurementWidget.loadData();
       this.toastr.success('Success!', 'Measurement Successfully Updated!');
 
