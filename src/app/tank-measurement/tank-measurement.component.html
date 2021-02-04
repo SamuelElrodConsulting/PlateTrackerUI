@@ -11,10 +11,21 @@
         <div class="row add-update-spacer">
             <div class="col-md-3"></div><div class="col-md-3">
             <mat-form-field appearance="fill">
+                <mat-label>Line</mat-label>
+                <mat-select [(value)]="newLineId">
+                    <mat-option *ngFor="let line of lines" [value]="line.lineId">
+                    {{line.lineName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field appearance="fill">
                 <mat-label>Tank Type</mat-label>
                 <mat-select [(value)]="newTankTypeId">
-                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.TankTypeId">
-                    {{tank.TankTypeName}}
+                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.tankTypeId">
+                    {{tank.tankTypeName}}
                     </mat-option>
                 </mat-select>
             </mat-form-field></div>
@@ -72,10 +83,21 @@
         <div class="row add-update-spacer">
             <div class="col-md-3"></div><div class="col-md-3">
             <mat-form-field appearance="fill">
+                <mat-label>Line</mat-label>
+                <mat-select [(value)]="updateLineId">
+                    <mat-option *ngFor="let line of lines" [value]="line.lineId">
+                    {{line.lineName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field></div>
+        </div>
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div><div class="col-md-3">
+            <mat-form-field appearance="fill">
                 <mat-label>Tank Type</mat-label>
                 <mat-select [(value)]="updateTankTypeId">
-                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.TankTypeId">
-                    {{tank.TankTypeName}}
+                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.tankTypeId">
+                    {{tank.tankTypeName}}
                     </mat-option>
                 </mat-select>
             </mat-form-field></div>

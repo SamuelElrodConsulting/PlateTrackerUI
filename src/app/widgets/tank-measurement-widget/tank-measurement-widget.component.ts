@@ -11,7 +11,7 @@ import { TankMeasurement } from 'src/app/models/tank-measurement';
 })
 export class TankMeasurementWidgetComponent implements OnInit {
   tankMeasurements: TankMeasurement[];
-  displayedColumns: string[] =['TankeMeasurementTypeName', 'TankTypeName',
+  displayedColumns: string[] =['TankeMeasurementTypeName', 'LineName', 'TankTypeName',
   'TankMeasurementDescription', 'Value', 'UOM', 'EmployeeName', 'TankMeasurementDatetime', 'edit', 'delete']
 
   public SelectedRow: TankMeasurement = null;
@@ -56,9 +56,9 @@ export class TankMeasurementWidgetComponent implements OnInit {
 
     row.highlighted = rowToToggleValue;
 
-    console.log(row.highlighted)
-
     this.selectedMeasurementChanged.next(row);
+    console.log('row');
+    console.log(row);
   }
   
   async selectRow(row: TankMeasurement) {

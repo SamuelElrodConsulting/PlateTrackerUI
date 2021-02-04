@@ -24,6 +24,11 @@
     <th mat-header-cell *matHeaderCellDef> Measurement </th>
     <td mat-cell *matCellDef="let element"> {{element.tankeMeasurementTypeName}} </td>
     </ng-container>
+    
+    <ng-container matColumnDef="LineName">
+      <th mat-header-cell *matHeaderCellDef> Line </th>
+      <td mat-cell *matCellDef="let element"> {{element.lineName}} </td>
+    </ng-container>
 
     <ng-container matColumnDef="TankTypeName">
         <th mat-header-cell *matHeaderCellDef> Tank Type</th>
