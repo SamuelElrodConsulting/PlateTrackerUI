@@ -70,7 +70,7 @@ export class TankMeasurmentNominalsComponent implements OnInit {
       this.hideUpdatedNominalForm = true;
     } else {
       console.log(nominal.tankMeasurementTypeId);
-      this.updateTankName = nominal.TankTypeName;
+      this.updateTankName = nominal.tankTypeName;
       this.updateTankMeasurement = nominal.tankMeasurementTypeName;
       this.updateLowNominalValue = nominal.lowNominalValue;
       this.updateIdealNominalValue = nominal.idealNominalValue;
@@ -78,7 +78,7 @@ export class TankMeasurmentNominalsComponent implements OnInit {
       this.updateMinTestingDays = nominal.minimumTestingFrequencyDays;
       this.updateIdealTestingDays = nominal.idealTestingFrequencyDays;
       this.updateTankMeasurementTypeId = nominal.tankMeasurementTypeId;
-      this.updateTankTypeId = nominal.TankTypeId;
+      this.updateTankTypeId = nominal.tankTypeId;
       this.updateTankMeasurementNominalId = nominal.tankMeasurementNominalId;
       this.hideUpdatedNominalForm = false;
     }
@@ -90,7 +90,7 @@ export class TankMeasurmentNominalsComponent implements OnInit {
     updateNominal.idealTestingFrequencyDays = this.updateIdealTestingDays;
     updateNominal.lowNominalValue = this.updateLowNominalValue;
     updateNominal.minimumTestingFrequencyDays = this.updateMinTestingDays;
-    updateNominal.TankTypeId = this.updateTankTypeId;
+    updateNominal.tankTypeId = this.updateTankTypeId;
     updateNominal.tankMeasurementTypeId = this.updateTankMeasurementTypeId;
     updateNominal.tankMeasurementNominalId = this.updateTankMeasurementNominalId;
     this.httpClient.put<TankType[]>('/api/' + 'TankMeasurementNominal', updateNominal).subscribe(result => {
@@ -107,7 +107,7 @@ export class TankMeasurmentNominalsComponent implements OnInit {
     newNominal.idealTestingFrequencyDays = this.newIdealTestingDays;
     newNominal.lowNominalValue = this.newLowNominalValue;
     newNominal.minimumTestingFrequencyDays = this.newMinTestingDays;
-    newNominal.TankTypeId = this.newTankTypeId;
+    newNominal.tankTypeId = this.newTankTypeId;
     newNominal.tankMeasurementTypeId = this.newTankMeasurementTypeId;
     this.httpClient.post<TankType[]>('/api/' + 'TankMeasurementNominal', newNominal).subscribe(result => {
       this.nominalWidget.updateNominalList();
