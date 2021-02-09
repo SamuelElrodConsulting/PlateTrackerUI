@@ -12,7 +12,7 @@
             <div class="col-md-3"></div><div class="col-md-3">
             <mat-form-field appearance="fill">
                 <mat-label>Line</mat-label>
-                <mat-select [(value)]="newLineId">
+                <mat-select [(value)]="newLineId" (selectionChange)="lineSelectionChanged($event)">
                     <mat-option *ngFor="let line of lines" [value]="line.lineId">
                     {{line.lineName}}
                     </mat-option>

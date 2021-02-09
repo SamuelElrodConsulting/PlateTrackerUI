@@ -50,15 +50,10 @@ export class TankMeasurementComponent implements OnInit {
   }
 
   async loadData() {
-    this.http.get<TankMeasurementType[]>('/api/' + 'TankMeasurementType').subscribe(result => {
+   this.http.get<TankMeasurementType[]>('/api/' + 'TankMeasurementType').subscribe(result => {
       this.measurementTypes = result;
     }, error => console.error(error));
 
-    this.http.get<TankType[]>('/api/' + 'TankType').subscribe(result => {
-      this.tankTypes = result;
-      console.log('tanktype');
-      console.log(result);
-    }, error => console.error(error));
 
     this.http.get<Employee[]>('/api/' + 'EmployeeMeasurement').subscribe(result => {
       this.employees = result;
@@ -94,6 +89,11 @@ export class TankMeasurementComponent implements OnInit {
     }
   }
   
+  lineSelectionChanged(line){
+    this.http.get<TankType[]>('/api/' + 'TankType/' + line.value).subscribe(result => {
+      this.tankTypes = result;
+    }, error => console.error(error));
+  }
   
   async addMeasurement() {
     var addMeasurement = new TankMeasurement();

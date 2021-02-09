@@ -1,57 +1,138 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Confirm Delete</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label>Are you sure you want to delete this Tank Measurement?</label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')" class="button-delete">Delete</button>
+  </div>
+</ng-template>
+
 <h1 id="tableLabel">Tank Measurment Types</h1>
 
 <p>Different types of measurments currently loaded and available for PlateTracker.</p>
 
 <p *ngIf="!tankMeasurementTypes"><em>Loading...</em></p>
 
-<!--
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="tankMeasurementTypes">
-  <thead>
-    <tr>
-      <th>Measurement Type</th>
-      <th>Description</th>
-      <th>Units</th>
-      <th>Created By</th>
-      <th>Date Created</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of tankMeasurementTypes">
-      <td>{{ item.tankMeasurementTypeName }}</td>
-      <td>{{ item.tankMeasurementTypeDescription }}</td>
-      <td>{{ item.uom }}</td>
-      <td>{{ item.createdBy }}</td>
-      <td>{{ item.datetimeCreated }}</td>
-    </tr>
-  </tbody>
+
+<table mat-table [dataSource]="tankMeasurementTypes" class="mat-elevation-z8">
+  <ng-container matColumnDef="tankMeasurementTypeName">
+    <th mat-header-cell *matHeaderCellDef> Measurement Name</th>
+    <td mat-cell *matCellDef="let element"> {{element.tankMeasurementTypeName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="tankMeasurementTypeDescription">
+    <th mat-header-cell *matHeaderCellDef> Measurement Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.tankMeasurementTypeDescription}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="uom">
+      <th mat-header-cell *matHeaderCellDef> Unit of Measure </th>
+      <td mat-cell *matCellDef="let element"> {{element.uom}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="datetimeUpdated">
+      <th mat-header-cell *matHeaderCellDef> Updated Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.datetimeUpdated | date: 'MM/dd/yyyy'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef> Edit </th>
+      <td mat-cell *matCellDef="let element" class="hover">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="edit(element)">edit</mat-icon>
+      </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef> Delete </th>
+      <td mat-cell *matCellDef="let element" class="hover">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="delete(element, content)">delete</mat-icon>
+      </td>
+  </ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"
+  [ngClass]="{'highlight': row.highlighted}"></tr>
 </table>
 
-<br />test
-<br />
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<!--Add Update Section-->
+<div class="spacer"></div>
 
-
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef> Symbol </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
--->
+<div class="row zero-out-margin">
+  <div class="col-md-5 add-measurement-wrapper">
+    <h3>Add New Measurement</h3>
+    <hr>    
+    <div class="row add-update-space">
+      <div class="col-md-3"></div><div class="col-md-3">
+      <mat-form-field>
+          <mat-label>Measurement Name</mat-label>
+          <input matInput [(ngModel)]="newTankMeasurementName">
+      </mat-form-field>
+    </div>
+    </div>
+    <div class="row add-update-space">
+      <div class="col-md-3"></div><div class="col-md-3">
+      <mat-form-field>
+          <mat-label>Measurement Description</mat-label>
+          <input matInput [(ngModel)]="newTankMeasurementDescription">
+      </mat-form-field>
+    </div>
+    </div>
+    <div class="row add-update-space">
+    <div class="col-md-3"></div><div class="col-md-3">
+        <mat-form-field>
+            <mat-label>UOM</mat-label>
+            <input matInput [(ngModel)]="newUOM">
+        </mat-form-field></div>
+    </div>
+    <div class="row add-update-space">
+        <div class="col-md-2"></div>
+        <div class="col-md-4" (click)="addMeasurementType()">
+            <div class="add-button"><span>Add</span></div>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+  <div class="col-md-5 update-measurement-wrapper" [hidden]="hideUpdateMeasurementTypeForm">
+      <h3>Update Measurement</h3>
+      <hr>    
+      <div class="row add-update-space">
+        <div class="col-md-3"></div><div class="col-md-3">
+        <mat-form-field>
+            <mat-label>Measurement Name</mat-label>
+            <input matInput [(ngModel)]="updateTankMeasurementName">
+        </mat-form-field>
+      </div>
+      </div>
+      <div class="row add-update-space">
+        <div class="col-md-3"></div><div class="col-md-3">
+        <mat-form-field>
+            <mat-label>Measurement Description</mat-label>
+            <input matInput [(ngModel)]="updateTankMeasurementDescription">
+        </mat-form-field>
+      </div>
+      </div>
+      <div class="row add-update-space">
+      <div class="col-md-3"></div><div class="col-md-3">
+          <mat-form-field>
+              <mat-label>UOM</mat-label>
+              <input matInput [(ngModel)]="updateUOM">
+          </mat-form-field></div>
+      </div>
+      <div class="row add-update-space">
+          <div class="col-md-2"></div>
+          <div class="col-md-3" (click)="updateMeasurementType()">
+              <div class="add-button"><span>Update</span></div>
+          </div>
+      </div>
+  </div>
+</div>

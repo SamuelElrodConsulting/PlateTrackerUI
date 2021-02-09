@@ -2,3 +2,198 @@ th {
     font-size: small;
     font-weight: bold;
 }
+
+.align-right {
+    text-align: right;
+}
+
+
+.add-update-space {
+    padding:5px;
+}
+
+.zero-out-margin{
+    margin:0px;
+}
+
+.add-measurement-wrapper {
+    border-radius: 6px;
+    border-color:gray;
+    border-style: solid;
+    background-color: honeydew;
+    margin-left:0px;
+}
+
+.add-new-nominal-header {
+    border-radius: 6px;
+    border-color:gray;
+    border-style: solid;
+    background-color: rgb(65, 105, 58);
+    margin-left:0px;
+}
+
+.update-measurement-wrapper {
+    border-radius: 6px;
+    border-color:gray;
+    border-style: solid;
+    background-color: rgb(255, 253, 240);
+    margin-left:0px; 
+}
+
+.spacer {
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+
+.add-button{
+    border-radius: 6px;
+    border-color:rgb(11, 46, 0);
+    background-color: rgb(6, 97, 29);
+    border-style: solid;
+    text-align: center;
+    vertical-align: middle;
+    width: 310px;
+    height: 40px;
+    line-height: 40px;
+    color:rgb(231, 228, 228);
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+}
+
+.update-button{
+    border-radius: 6px;
+    border-color:rgb(46, 43, 0);
+    background-color: rgb(91, 97, 6);
+    border-style: solid;
+    text-align: center;
+    vertical-align: middle;
+    width: 32s0px;
+    height: 40px;
+    line-height: 40px;
+    color:rgb(231, 228, 228);
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+}
+
+
+.mat-column-tankMeasurementTypeName {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 6% !important;
+    width: 6% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-align: center;
+    justify-content: flex-end;
+
+    word-break: break-word;
+}
+
+.mat-column-tankMeasurementTypeDescription {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    text-align: center;
+}
+
+.mat-column-datetimeUpdated {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    text-align: center;
+}
+
+.mat-column-uom {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 7% !important;
+    width: 7% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    text-align: center;
+}
+
+.mat-column-edit {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 6% !important;
+    width: 6% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-align: center;
+    justify-content: flex-end;
+    color:blue;
+    word-break: break-word;
+}
+
+
+.mat-column-delete {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 7% !important;
+    width: 7% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-align: center;
+    justify-content: flex-end;
+    color:red;
+    word-break: break-word;
+}
+
+.highlight{
+    background-color: gray
+}
+
+.hover {
+    cursor: pointer;
+}
+
+.modal-body {
+    background-color: lightgray;
+}
+.modal-footer {
+    background-color:lightgray;
+}
+.modal-header {
+    background-color: red;
+    font-size:larger;
+    font-weight:bolder;
+}
+.button-delete {
+    background-color: darkgray;
+}
+
+.form-group {
+    font-weight: bold;
+    font-size:large;
+}

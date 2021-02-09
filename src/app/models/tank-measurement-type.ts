@@ -8,4 +8,6 @@ export class TankMeasurementType {
     createdBy: string;
     updatedBy: string;
     uom: string;
+
+    highlighted = false;
 }
