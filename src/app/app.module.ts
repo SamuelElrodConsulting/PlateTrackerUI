@@ -25,6 +25,12 @@ import { TankMeasurementWidgetComponent } from './widgets/tank-measurement-widge
 import { TankMeasurementDetailComponent } from './tank-measurement-detail/tank-measurement-detail.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { LineComponent } from './line/line.component';
+import { LineTypeComponent } from './line-type/line-type.component';
+import { LineTankTypeComponent } from './line-tank-type/line-tank-type.component';
+import { LineWidgetComponent } from './widgets/line-widget/line-widget.component';
+import { LineTypeWidgetComponent } from './widgets/line-type-widget/line-type-widget.component';
+import { LineTankTypeWidgetComponent } from './widgets/line-tank-type-widget/line-tank-type-widget.component';
 
 
 const routes: Routes = [
@@ -33,7 +39,10 @@ const routes: Routes = [
   { path: 'tankMeasurementTypes', component: TankMeasurmentTypesComponentComponent },
   { path: 'tankMeasurementNominals', component: TankMeasurmentNominalsComponent},
   { path: 'tankMeasurement', component: TankMeasurementComponent},
-  { path:'tankMeasurementDetail', component:TankMeasurementDetailComponent}
+  { path:'tankMeasurementDetail', component:TankMeasurementDetailComponent},
+  { path:'line', component:LineComponent},
+  { path:'lineType', component:LineTypeComponent},
+  { path:'lineTankType', component:LineTankTypeComponent}
 ]
 
 @NgModule({
@@ -45,7 +54,13 @@ const routes: Routes = [
     NominalsWidgetComponent,
     TankMeasurementComponent,
     TankMeasurementWidgetComponent,
-    TankMeasurementDetailComponent
+    TankMeasurementDetailComponent,
+    LineComponent,
+    LineTypeComponent,
+    LineTankTypeComponent,
+    LineWidgetComponent,
+    LineTypeWidgetComponent,
+    LineTankTypeWidgetComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(routes), HttpClientModule, FormsModule, BrowserAnimationsModule,
