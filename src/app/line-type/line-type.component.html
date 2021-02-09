@@ -1,2 +1,62 @@
-<p>line-type works!</p>
-<app-line-type-widget></app-line-type-widget>
+<h1>Line Types</h1>
+<p>Different types of Lines (e.g, Silver, Tin, etc...).
+<hr>
+<h3>List of Line Types</h3>
+<app-line-type-widget #lineTypeWidget  (selectedLineTypeChanged)="selectedLineTypeChanged($event)"></app-line-type-widget>
+<div class="spacer"></div>
+<div class="row zero-out-margin">
+    <div class="col-md-5 add-tank-wrapper">
+        <h3>Add New Line Type</h3>
+        <hr>    
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <mat-form-field>
+                    <mat-label>Line Type Name</mat-label>
+                    <input matInput value="" [(ngModel)]="newLineTypeName">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div><div class="col-md-3">
+                <mat-form-field>
+                    <mat-label>Line Type Description</mat-label>
+                    <input matInput value="0" [(ngModel)]="newLineTypeDescription">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-2"></div>
+            <div class="col-md-4" (click)="addNewLineType()">
+                <div class="add-button"><span>Add</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 update-tank-wrapper" [hidden]="hideUpdateLineType">
+        <h3>Update Line Type</h3>
+        <hr>    
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div><div class="col-md-3">
+                <mat-form-field>
+                    <mat-label>Line Type Name</mat-label>
+                    <input matInput value="" [(ngModel)]="updateLineTypeName">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div><div class="col-md-3">
+                <mat-form-field>
+                    <mat-label>Line Type Description</mat-label>
+                    <input matInput value="" [(ngModel)]="updateLineTypeDescription">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-2"></div>
+            <div class="col-md-3" (click)="updateLineType()">
+                <div class="add-button"><span>Update</span></div>
+            </div>
+        </div>
+    </div>
+</div>

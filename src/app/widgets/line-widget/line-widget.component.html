@@ -1,1 +1,66 @@
-<p>line-widget works!</p>
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Confirm Delete</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label>Are you sure you want to delete this Line?</label>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')" class="button-delete">Delete</button>
+    </div>
+  </ng-template>
+  
+
+<p *ngIf="!lines"><em>Loading...</em></p>
+
+<table mat-table [dataSource]="lines" class="mat-elevation-z8">
+    <ng-container matColumnDef="lineName">
+    <th mat-header-cell *matHeaderCellDef> Line</th>
+    <td mat-cell *matCellDef="let element"> {{element.lineName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lineDescription">
+        <th mat-header-cell *matHeaderCellDef> Line Description</th>
+        <td mat-cell *matCellDef="let element"> {{element.lineDescription}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lineTypeName">
+        <th mat-header-cell *matHeaderCellDef> Line Type</th>
+        <td mat-cell *matCellDef="let element"> {{element.lineTypeName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="updatedBy">
+        <th mat-header-cell *matHeaderCellDef> Updated By </th>
+        <td mat-cell *matCellDef="let element"> {{element.updatedBy}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="datetimeUpdated">
+        <th mat-header-cell *matHeaderCellDef> Updated Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.datetimeUpdated | date: 'MM/dd/yyyy'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> Edit </th>
+        <td mat-cell *matCellDef="let element" class="hover">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="edit(element)">edit</mat-icon>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element" class="hover">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="delete(element, content)">delete</mat-icon>
+        </td>
+    </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+    [ngClass]="{'highlight': row.highlighted}"></tr>
+</table>

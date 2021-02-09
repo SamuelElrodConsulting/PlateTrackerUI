@@ -42,10 +42,6 @@ export class NominalsWidgetComponent implements OnInit {
     return new FormControl(0, Validators.required)
   }
 
-  async selectRow(row: TankMeasurementNominal) {
-
-  }
-
   async edit(row: TankMeasurementNominal) {
     var rowToToggleValue =!row.highlighted;
 
