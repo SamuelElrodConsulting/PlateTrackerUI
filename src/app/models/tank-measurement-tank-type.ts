@@ -1,21 +1,21 @@
 export class TankType {
-    TankMeasurementId:number;
-    TankMeasurementTypeId:number;
-    TankeMeasurementTypeName:string;
+    tankMeasurementId:number;
+    tankMeasurementTypeId:number;
+    tankeMeasurementTypeName:string;
     tankTypeId:number;
     tankTypeName:string;
-    TankMeasurementDescription: string;
-    Value:number;
-    Notes:string;
-    TankMeasurementEmployeeId:number;
-    EmployeeName: string;
-    TankMeasurementDatetime:Date;
-    DatetimeCreated:Date;
-    DatetimeUpdated:Date;
-    Deleted:Boolean;
-    CreatedBy:string;
-    UpdatedBy:string;
-    UOM:string;
+    tankMeasurementDescription: string;
+    value:number;
+    notes:string;
+    tankMeasurementEmployeeId:number;
+    employeeName: string;
+    tankMeasurementDatetime:Date;
+    datetimeCreated:Date;
+    datetimeUpdated:Date;
+    deleted:Boolean;
+    createdBy:string;
+    updatedBy:string;
+    uom:string;
 
     highlighted = false;
 }
