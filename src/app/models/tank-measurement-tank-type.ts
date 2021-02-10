@@ -2,8 +2,8 @@ export class TankType {
     TankMeasurementId:number;
     TankMeasurementTypeId:number;
     TankeMeasurementTypeName:string;
-    TankTypeId:number;
-    TankTypeName:string;
+    tankTypeId:number;
+    tankTypeName:string;
     TankMeasurementDescription: string;
     Value:number;
     Notes:string;

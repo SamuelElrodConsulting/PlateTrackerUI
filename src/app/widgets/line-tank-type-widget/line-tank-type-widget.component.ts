@@ -27,7 +27,12 @@ export class LineTankTypeWidgetComponent implements OnInit {
       this.lineTankTypes = result;
     }, error => console.error(error));
   }
-
+  async updateLineTankTypeListByLine(lineId: number) {
+    this.httpClient.get<LineTankType[]>('/api/' + 'LineTankType/' + lineId).subscribe(result => {
+      this.lineTankTypes = result;
+    }, error => console.error(error));
+  }
+  
   async edit(row: LineTankType) {
     var rowToToggleValue =!row.highlighted;
 

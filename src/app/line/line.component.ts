@@ -39,7 +39,6 @@ export class LineComponent implements OnInit {
       this.updateLineDescription = '';
       this.updateLineId = null;
       this.hideUpdateLine = true;
-
     } else {
       this.updateLineName = line.lineName;
       this.updateLineDescription = line.lineDescription;

@@ -2,4 +2,112 @@
 <p>Lines and their associated Tanks
 <hr>
 <h3>List of Line Types</h3>
-<app-line-tank-type-widget></app-line-tank-type-widget>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-3"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-2">
+        Filter by Line: 
+        <mat-form-field appearance="fill">
+            <mat-label>Line</mat-label>
+            <mat-select [(value)]="lineFilter" (selectionChange)="filterChanged($event)">
+                <mat-option *ngFor="let line of filterLines" [value]="line.lineId">
+                    {{line.lineName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+<app-line-tank-type-widget #lineTankTypeWidget (selectedLineTankTypeChanged)="selectedLineTankTypeChanged($event)"></app-line-tank-type-widget>
+<div class="spacer"></div>
+<div class="row zero-out-margin">
+    <div class="col-md-5 add-tank-wrapper">
+        <h3>Add New Line Tank Type</h3>
+        <hr>    
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Line</mat-label>
+                    <mat-select [(value)]="newLineId">
+                        <mat-option *ngFor="let line of lines" [value]="line.lineId">
+                            {{line.lineName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Tank Type</mat-label>
+                    <mat-select [(value)]="newTankId">
+                        <mat-option *ngFor="let tankType of tankTypes" [value]="tankType.tankTypeId">
+                            {{tankType.tankTypeName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+                <mat-form-field>
+                    <mat-label>Sequence</mat-label>
+                    <input matInput value="" [(ngModel)]="newSequence">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-2"></div>
+            <div class="col-md-4" (click)="addNewLineTankType()">
+                <div class="add-button"><span>Add</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 update-tank-wrapper" [hidden]="hideUpdateLineTankType">
+        <h3>Update Line Tank Type</h3>
+        <hr>    
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Line</mat-label>
+                    <mat-select [(value)]="updateLineId">
+                        <mat-option *ngFor="let line of lines" [value]="line.lineId">
+                            {{line.lineName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Tank Type</mat-label>
+                    <mat-select [(value)]="updateTankId">
+                        <mat-option *ngFor="let tankType of tankTypes" [value]="tankType.tankTypeId">
+                            {{tankType.tankTypeName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+                <mat-form-field>
+                    <mat-label>Sequence</mat-label>
+                    <input matInput value="" [(ngModel)]="updateSequence">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-2"></div>
+            <div class="col-md-3" (click)="updateLineTankType()">
+                <div class="add-button"><span>Update</span></div>
+            </div>
+        </div>
+    </div>
+</div>
