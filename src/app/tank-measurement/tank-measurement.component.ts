@@ -98,7 +98,7 @@ export class TankMeasurementComponent implements OnInit {
   async addMeasurement() {
     var addMeasurement = new TankMeasurement();
     addMeasurement.tankMeasurementTypeId = this.newTankMeasurementTypeId;
-    addMeasurement.lineTankTypeId = this.newTankTypeId;
+    addMeasurement.tankTypeId = this.newTankTypeId;
     addMeasurement.lineID = this.newLineId;
     addMeasurement.value = this.newValue;
     addMeasurement.tankMeasurementEmployeeId = this.newEmployeeId;

@@ -26,7 +26,7 @@ export class NominalsWidgetComponent implements OnInit {
     
   
   
-  constructor(http: HttpClient, private modalService: NgbModal, private toastr: ToastrService) {   
+  constructor(private http: HttpClient, private modalService: NgbModal, private toastr: ToastrService) {   
     this.httpClient = http;
     this.updateNominalList();
   }
@@ -59,10 +59,16 @@ export class NominalsWidgetComponent implements OnInit {
     this.edit(row);
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.toastr.error('Nominal Deleted!', 'Nominal Successfully Deleted!');
-    }, (reason) => {
 
-    });
+      this.http.delete<boolean>('/api/' + 'TankMeasurementNominal/'+ row.tankMeasurementNominalId).subscribe(result => {
+        if (result) {
+          this.toastr.error('Nominal Deleted!', 'Nominal Successfully Deleted!');
+          this.updateNominalList();  
+        } else {
+          this.toastr.error('Error!', 'Nominal NOT Deleted!')
+        }
+      }, (reason) => {});
+    })
   }
 
   private Confirmed(reason: any): boolean {

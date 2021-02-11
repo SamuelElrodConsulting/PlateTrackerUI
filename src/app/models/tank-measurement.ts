@@ -4,6 +4,7 @@ export class TankMeasurement {
      tankeMeasurementTypeName: number;
      lineTankTypeId: number;
      tankTypeName: string;
+     tankTypeId: number;
      lineID: number;
      lineName: string;
      value: number;

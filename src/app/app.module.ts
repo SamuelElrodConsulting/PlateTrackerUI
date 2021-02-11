@@ -31,6 +31,13 @@ import { LineTankTypeComponent } from './line-tank-type/line-tank-type.component
 import { LineWidgetComponent } from './widgets/line-widget/line-widget.component';
 import { LineTypeWidgetComponent } from './widgets/line-type-widget/line-type-widget.component';
 import { LineTankTypeWidgetComponent } from './widgets/line-tank-type-widget/line-tank-type-widget.component';
+import { TankTypeComponent } from './tank-type/tank-type.component';
+import { TankTypeWidgetComponent } from './widgets/tank-type-widget/tank-type-widget.component';
+import { MatToolbarModule } from  '@angular/material/toolbar';
+import { MatSidenavModule } from  '@angular/material/sidenav';
+import { MatListModule } from  '@angular/material/list';
+import { MatButtonModule } from  '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 const routes: Routes = [
@@ -39,10 +46,11 @@ const routes: Routes = [
   { path: 'tankMeasurementTypes', component: TankMeasurmentTypesComponentComponent },
   { path: 'tankMeasurementNominals', component: TankMeasurmentNominalsComponent},
   { path: 'tankMeasurement', component: TankMeasurementComponent},
-  { path:'tankMeasurementDetail', component:TankMeasurementDetailComponent},
-  { path:'line', component:LineComponent},
-  { path:'lineType', component:LineTypeComponent},
-  { path:'lineTankType', component:LineTankTypeComponent}
+  { path: 'tankMeasurementDetail', component:TankMeasurementDetailComponent},
+  { path: 'line', component:LineComponent},
+  { path: 'lineType', component:LineTypeComponent},
+  { path: 'lineTankType', component:LineTankTypeComponent},
+  { path: 'tankType', component:TankTypeComponent}
 ]
 
 @NgModule({
@@ -60,13 +68,16 @@ const routes: Routes = [
     LineTankTypeComponent,
     LineWidgetComponent,
     LineTypeWidgetComponent,
-    LineTankTypeWidgetComponent
+    LineTankTypeWidgetComponent,
+    TankTypeComponent,
+    TankTypeWidgetComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(routes), HttpClientModule, FormsModule, BrowserAnimationsModule,
     MatTableModule, MatSortModule, MatIconModule, NgbModule, MatFormFieldModule, MatFormFieldModule,
     MatSelectModule, MatInputModule, ToastrModule.forRoot(),
-    MatDatepickerModule, MatNativeDateModule, NgxChartsModule, MatTooltipModule
+    MatDatepickerModule, MatNativeDateModule, NgxChartsModule, MatTooltipModule,
+    MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

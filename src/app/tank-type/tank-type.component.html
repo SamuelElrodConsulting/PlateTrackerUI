@@ -1,0 +1,105 @@
+<h1>Tank Type</h1>
+<p>Specific Tanks and their respective types of lines
+<hr>
+<h3>List of Tanks</h3>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-3"></div>
+    <div class="col-md-4"></div>
+    <div class="col-md-2">
+        Filter by Line Type: 
+        <mat-form-field appearance="fill">
+            <mat-label>Line</mat-label>
+            <mat-select [(value)]="lineFilter" (selectionChange)="filterChanged($event)">
+                <mat-option *ngFor="let line of filterLines" [value]="line.lineTypeId">
+                    {{line.lineTypeName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+<app-tank-type-widget #tankTypeWidget (selectedTankTypeChanged)="selectedTankTypeChanged($event)"></app-tank-type-widget>
+<div class="spacer"></div>
+<div class="row zero-out-margin">
+    <div class="col-md-5 add-tank-wrapper">
+        <h3>Add New Tank Type</h3>
+        <hr>    
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <mat-form-field>
+                    <mat-label>Tank Type</mat-label>
+                    <input matInput value="" [(ngModel)]="newTankTypeName">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <mat-form-field>
+                    <mat-label>Tank Description</mat-label>
+                    <input matInput value="" [(ngModel)]="newTankTypeDescription">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Line Type</mat-label>
+                    <mat-select [(value)]="newLineTypeId">
+                        <mat-option *ngFor="let lineType of lineTypes" [value]="lineType.lineTypeId">
+                            {{lineType.lineTypeName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-2"></div>
+            <div class="col-md-4" (click)="addNewTankType()">
+                <div class="add-button"><span>Add</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 update-tank-wrapper" [hidden]="hideUpdateTankType">
+        <h3>Update Tank Type</h3>
+        <hr>    
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <mat-form-field>
+                    <mat-label>Line Type</mat-label>
+                    <input matInput value="" [(ngModel)]="updateTankTypeName">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-spacer">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <mat-form-field>
+                    <mat-label>Tank Description</mat-label>
+                    <input matInput value="" [(ngModel)]="updateTankTypeDescription">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-3"></div><div class="col-md-3">
+                <mat-form-field appearance="fill">
+                    <mat-label>Line Type</mat-label>
+                    <mat-select [(value)]="updateLineTypeId">
+                        <mat-option *ngFor="let lineType of lineTypes" [value]="lineType.lineTypeId">
+                            {{lineType.lineTypeName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row add-update-space">
+            <div class="col-md-2"></div>
+            <div class="col-md-3" (click)="updateTankType()">
+                <div class="add-button"><span>Update</span></div>
+            </div>
+        </div>
+    </div>
+</div>

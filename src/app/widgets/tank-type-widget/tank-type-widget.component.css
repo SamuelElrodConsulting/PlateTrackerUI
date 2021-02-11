@@ -1,0 +1,126 @@
+th {
+    font-size: small;
+    font-weight: bold;
+}
+
+
+.mat-column-tankTypeName {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 20% !important;
+    width: 20% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.mat-column-tankTypeDescription {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 20% !important;
+    width: 20% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.mat-column-lineTypeName {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 20% !important;
+    width: 20% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    text-align: center;
+}
+
+.mat-column-datetimeUpdated {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 0% 2!important;
+    width: 20% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    text-align: center;
+}
+
+.mat-column-edit {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-align: center;
+    justify-content: flex-end;
+    color:blue;
+    word-break: break-word;
+}
+
+
+.mat-column-delete {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-align: center;
+    justify-content: flex-end;
+    color:red;
+    word-break: break-word;
+}
+
+.highlight{
+    background-color: gray
+}
+
+.hover {
+    cursor: pointer;
+}
+
+.modal-body {
+    background-color: lightgray;
+}
+.modal-footer {
+    background-color:lightgray;
+}
+.modal-header {
+    background-color: red;
+    font-size:larger;
+    font-weight:bolder;
+}
+.button-delete {
+    background-color: darkgray;
+}
+
+.form-group {
+    font-weight: bold;
+    font-size:large;
+}

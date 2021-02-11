@@ -11,6 +11,12 @@
     color: white;
   }
 
+  .toolbar-link {
+    color: white;
+    margin-left:25px;
+  }
+
+
   h1,
   h2,
   h3,
@@ -54,9 +60,16 @@
     opacity: 0.8;
   }
 
+  .menu-spacer {
+    width:50px;
+  }
+
+
   .content {
     display: flex;
-    margin: 82px auto 32px;
+    /*margin: 82px auto 32px;*/
+    margin-left:82px auto 32px;
+    margin-right:82px auto 32px;
     padding: 0 16px;
     /*max-width: 960px;*/
     width: 100%;

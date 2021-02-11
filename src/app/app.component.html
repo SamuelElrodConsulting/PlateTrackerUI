@@ -1,4 +1,4 @@
-<!-- Toolbar -->
+<!-- Toolbar
 <div class="toolbar" role="banner">
   <a href="/"><img
     width="40"
@@ -6,10 +6,68 @@
     src="../assets/logo.png"
   />
   <span class="logo-link">Plate Tracker</span></a>
-</div>
+  
+  <a href="/tankMeasurementTypes"><span class="toolbar-link">Tank Measurement Types  </span></a>
+  <a href="/tankMeasurementNominals"><span class="toolbar-link">Tank Measurement Nominals</span></a>
+  <a href="/tankMeasurement"><span class="toolbar-link">Tank Measurements</span></a>
+  <a href="/tankMeasurementDetail"><span class="toolbar-link">Tank Measurement Details</span></a>
 
-<div class="test">
+
+
+  <a href="/lineTankType"><span class="toolbar-link">Line Tank Types</span></a>
+  <a href="/tankType"><span class="toolbar-link">Tank Types</span></a>
+
+
+    <a href="/line"><span class="toolbar-link">Lines</span></a>
+  <a href="/lineType"><span class="toolbar-link">Line Types</span></a>
 </div>
+ -->
+
+  <mat-toolbar color="primary">
+      <mat-toolbar-row>
+          <span><img width="40"alt="Angular Logo" src="../assets/logo.png"/>Plate Tracker</span>
+          <span class="menu-spacer"></span>
+          <ng-template ngIf="true">
+            <button mat-button [matMenuTriggerFor]="line"
+            #matMenuTrigger="matMenuTrigger" 
+            (mouseenter)="matMenuTrigger.openMenu()" 
+            >Lines</button>
+            <mat-menu #line="matMenu"   [overlapTrigger]="false">
+              <div (mouseleave)="matMenuTrigger.closeMenu()">
+                <a href="/line"><button mat-menu-item>Lines</button></a>
+                <a href="/lineType"><button mat-menu-item>Line Types</button></a>
+              </div>
+            </mat-menu>
+          </ng-template>
+          <ng-template ngIf="true">
+            <button mat-button [matMenuTriggerFor]="tank"
+            #matMenuTrigger="matMenuTrigger" 
+            (mouseenter)="matMenuTrigger.openMenu()" 
+            >Tanks</button>
+            <mat-menu #tank="matMenu"  [overlapTrigger]="false">
+              <div (mouseleave)="matMenuTrigger.closeMenu()">
+                <a href="/tankType"><button mat-menu-item>Tank Types</button></a>
+                <a href="/lineTankType"><button mat-menu-item>Line Tank Types</button></a>
+              </div>
+            </mat-menu>
+          </ng-template>
+          <ng-template ngIf="true">
+            <button mat-button [matMenuTriggerFor]="measurement"
+            #matMenuTrigger="matMenuTrigger" 
+            (mouseenter)="matMenuTrigger.openMenu()" 
+            >Measurements</button>
+            <mat-menu #measurement="matMenu"  [overlapTrigger]="false">
+              <div (mouseleave)="matMenuTrigger.closeMenu()">
+                <a href="/tankMeasurement"><button mat-menu-item>Tank Measurements</button></a>
+                <a href="/tankMeasurementDetail"><button mat-menu-item>Tank Measurement Details</button></a>
+                <a href="/tankMeasurementTypes"><button mat-menu-item>Tank Measurement Types</button></a>
+                <a href="/tankMeasurementNominals"><button mat-menu-item>Tank Measurement Nominals</button></a>
+              </div>
+            </mat-menu>
+          </ng-template>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
 <div class="content" role="main">
   <div class="content-wrapper">
     <router-outlet></router-outlet>
