@@ -13,8 +13,8 @@
             <mat-form-field appearance="fill">
                 <mat-label>Tank Type</mat-label>
                 <mat-select [(value)]="newTankTypeId">
-                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.TankTypeId">
-                    {{tank.TankTypeName}}
+                    <mat-option *ngFor="let tank of tankTypes" [value]="tank.tankTypeId">
+                    {{tank.tankTypeName}}
                     </mat-option>
                 </mat-select>
             </mat-form-field></div>

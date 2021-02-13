@@ -10,13 +10,13 @@ import { TankMeasurement } from 'src/app/models/tank-measurement';
   styleUrls: ['./tank-measurement-widget.component.css']
 })
 export class TankMeasurementWidgetComponent implements OnInit {
-  tankMeasurements: TankMeasurement[];
+  public tankMeasurements: TankMeasurement[];
   displayedColumns: string[] =['TankeMeasurementTypeName', 'LineName', 'TankTypeName',
   'TankMeasurementDescription', 'Value', 'UOM', 'EmployeeName', 'TankMeasurementDatetime', 'edit', 'delete']
 
   public SelectedRow: TankMeasurement = null;
   @Output() selectedMeasurementChanged = new EventEmitter<TankMeasurement>();
-
+  @Output() dataLoaded = new EventEmitter<TankMeasurement[]>();
 
   constructor(private http: HttpClient, private toastr: ToastrService,  private modalService: NgbModal) { 
 
@@ -32,14 +32,14 @@ export class TankMeasurementWidgetComponent implements OnInit {
   async loadDataByTankType(tankTypeID: number) {
     this.http.get<TankMeasurement[]>('/api/' + 'TankMeasurement/' + tankTypeID).subscribe(result => {
       this.tankMeasurements = result;
-      console.log(result);
     }, error => console.error(error));
   }
 
   async loadDataByTankTypeAndMeasurementType(tankTypeID: number, measurementTypeID: number) {
     this.http.get<TankMeasurement[]>('/api/' + 'TankMeasurement/' + tankTypeID + "/" + measurementTypeID).subscribe(result => {
       this.tankMeasurements = result;
-      console.log(result);
+      console.log('sending dataload event from widget');
+      this.dataLoaded.next(result);
     }, error => console.error(error));
   }
 
