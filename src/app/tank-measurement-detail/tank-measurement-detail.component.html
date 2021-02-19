@@ -24,28 +24,4 @@
 <hr>
 <app-tank-measurement-widget #tankMeasurementsWidget (dataLoaded)="dataLoaded($event)"></app-tank-measurement-widget>
 <br>
-<div [hidden]="hideGraph" style="background-color: rgb(88, 88, 88); font-weight: bolder; text-align: center; font-size:x-large; height:100px">
-    {{graphTitle}}
-</div>
-<div [hidden]="hideGraph" style="background-color: rgb(88, 88, 88); font-weight: bolder; text-align: center;">
-        <div class="chart-container">
-            <ngx-charts-line-chart
-            [scheme]="colorScheme"
-            [legend]="legend"
-            [legendPosition]="legendPosition"
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [xAxis]="xAxis"
-            [yAxis]="yAxis"
-            [xAxisLabel]="xAxisLabel"
-            [yAxisLabel]="yAxisLabel"
-            [timeline]="timeline"
-            [results]="dataSource"
-            [showGridLines]="showGridLines"
-            [referenceLines]="referenceLines"
-            [showRefLines]="showRefLines"
-            (select)="onSelect($event)"
-            >
-            </ngx-charts-line-chart>
-        </div>
-</div>
+<div echarts [options]="options" class="demo-chart" [hidden]="hideGraph" [theme]="theme" ></div>

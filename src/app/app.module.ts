@@ -38,6 +38,7 @@ import { MatSidenavModule } from  '@angular/material/sidenav';
 import { MatListModule } from  '@angular/material/list';
 import { MatButtonModule } from  '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 
 const routes: Routes = [
@@ -77,8 +78,10 @@ const routes: Routes = [
     MatTableModule, MatSortModule, MatIconModule, NgbModule, MatFormFieldModule, MatFormFieldModule,
     MatSelectModule, MatInputModule, ToastrModule.forRoot(),
     MatDatepickerModule, MatNativeDateModule, NgxChartsModule, MatTooltipModule,
-    MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatMenuModule
-  ],
+    MatToolbarModule, MatSidenavModule, MatListModule, MatButtonModule, MatMenuModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    })  ],
   providers: [],
   bootstrap: [AppComponent]
 })

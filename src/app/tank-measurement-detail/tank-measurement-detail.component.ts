@@ -19,36 +19,10 @@ import { Chart } from '../models/chart';
 })
 
 export class TankMeasurementDetailComponent implements OnInit {
-  dataSource: any[];
-  //[view]="view"
-  view: any[] = [1200, 300];
-
-  // options
-  legend: boolean = true;
-  showLabels: boolean = true;
-  animations: boolean = true;
-  xAxis: boolean = true;
-  yAxis: boolean = true;
-  showYAxisLabel: boolean = true;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = '';
-  yAxisLabel: string = '';
-  timeline: boolean = true;
-  legendPosition: string = 'below';
-  hideGraph: boolean = true;
-  showGridLines: boolean = true;
-  showRefLines:boolean = true;
-
-  referenceLines: any[] = [];
-
-  colorScheme = {
-    domain: ['#5AA454', '#E44D25', '#E44D25', '#7aa3e5', '#a8385d', '#aae3f5']
-  };
-
- 
-  graphTitle='';
-
   @ViewChild('tankMeasurementsWidget') tankMeasurementsWidget: TankMeasurementWidgetComponent;
+  options: any;
+  theme: string = 'dark';
+  hideGraph = true;
 
   currentTank: TankType;
   currentMeasurement: TankMeasurementType;
@@ -86,82 +60,109 @@ export class TankMeasurementDetailComponent implements OnInit {
   }
 
   getFormattedDate(date) {
-    /*debugger;
-    let year = date.getFullYear();
-    let month = (1 + date.getMonth()).toString().padStart(2, '0');
-    let day = date.getDate().toString().padStart(2, '0');
-  
-    return month + '/' + day + '/' + year;*/
     return date.substring(0,10);
   }
 
+  loadChartData(data: TankMeasurement[], result: Chart) {
+    this.hideGraph = false;
+    var currentTank = this.getCurrentTank();
+    var currentMeasurementType =this.getCurrentMeasurementType();
+    const xAxisData = [];
+    const mainData = [];
+    const highData = [];
+    const lowData = [];
+
+    data.forEach(m=> {
+      xAxisData.push(this.getFormattedDate(m.tankMeasurementDatetime));
+      mainData.push(m.value);
+      highData.push(result.highValue);
+      lowData.push(result.lowValue);
+    });
+    var colors = ['#5470C6', '#91CC75', '#EE6666'];
+
+    this.options = {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross'
+          }
+      },
+      toolbox: {
+        feature: {
+            dataView: {show: true, readOnly: false},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+      },
+      legend: {
+        data: [currentMeasurementType.tankMeasurementTypeName + ', ' + currentMeasurementType.uom, 'High Nominal Threshold', "Low Nominal Threshold"],
+        x: 'left',
+        y: 'bottom',
+        show: true
+      },
+      title: {
+        text: currentMeasurementType.tankMeasurementTypeName + ' of ' + currentTank.tankTypeName,
+        x: 'center'
+      },
+      xAxis: {
+        data: xAxisData,
+        silent: false,
+        splitLine: {
+          show: false,
+        },
+        name: 'Date',
+        nameLocation: 'middle',
+        nameGap: 50,
+        axisLine: {
+          show: true,
+          lineStyle: {
+              color: colors[0]
+          }
+        },
+      },
+      yAxis: {       
+        name: currentMeasurementType.tankMeasurementTypeName + ', ' + currentMeasurementType.uom,
+        nameLocation: 'middle',
+        nameGap: 50,
+        axisLine: {
+          show: true,
+          lineStyle: {
+              color: colors[1]
+          }
+        },
+      },
+      series: [
+        {
+          name: currentMeasurementType.tankMeasurementTypeName + ', ' + currentMeasurementType.uom,
+          type: 'bar',
+          data: mainData,
+          animationDelay: (idx) => idx * 10,
+        },
+        {
+          name: 'High Nominal Threshold',
+          type: 'line',
+          data: highData,
+          animationDelay: (idx) => idx * 10 + 100,
+        },
+        {
+          name: 'Low Nominal Threshold',
+          type: 'line',
+          data: lowData,
+          animationDelay: (idx) => idx * 10 + 100,
+        }
+      ],
+      animationEasing: 'elasticOut',
+      animationDelayUpdate: (idx) => idx * 5,
+    };
+  }
 
   async updateGraph(data: TankMeasurement[]){
-    this.referenceLines = [];
-
     this.http.get<Chart>('/api/' + 'chart/' + this.selectedTankTypeId + "/" + this.selectedTankMeasurementTypeId).subscribe(result => {
-      var currentTank = this.getCurrentTank();
-      var currentMeasurementType =this.getCurrentMeasurementType();
-  
-      var highNominalGraph = new GraphInfo();
-      highNominalGraph.name = 'High Nominal Value';
-      highNominalGraph.series = [];
-
-      var highNominalStartValue = new GraphSeriesItem();
-      highNominalStartValue.name = this.getFormattedDate(result.chartStartDate);
-      highNominalStartValue.value = result.highValue;
-
-      var highNominalEndValue = new GraphSeriesItem();
-      highNominalEndValue.name = this.getFormattedDate(result.chartEndDate);
-      highNominalEndValue.value = result.highValue;
-
-      highNominalGraph.series.push(highNominalStartValue);
-      highNominalGraph.series.push(highNominalEndValue);
-
-      var lowNominalGraph = new GraphInfo();
-      lowNominalGraph.name = 'Low Nominal Value';
-      lowNominalGraph.series = [];
-
-      var lowNominalStartValue = new GraphSeriesItem();
-      lowNominalStartValue.name = this.getFormattedDate(result.chartStartDate);
-      lowNominalStartValue.value = result.lowValue;
-
-      var lowNominalEndValue = new GraphSeriesItem();
-      lowNominalEndValue.name = this.getFormattedDate(result.chartEndDate);
-      lowNominalEndValue.value = result.lowValue;
-
-      lowNominalGraph.series.push(lowNominalStartValue);
-      lowNominalGraph.series.push(lowNominalEndValue);
-
-      var graph = new GraphInfo();
-      graph.name = currentMeasurementType.tankMeasurementTypeName + ' of ' + currentTank.tankTypeName;
-      this.graphTitle = graph.name;
-      this.xAxisLabel = 'Date';
-      this.yAxisLabel = currentMeasurementType.tankMeasurementTypeName + ', ' + currentMeasurementType.uom;
-  
-      graph.series = [];
-  
-      data.forEach(m=> {
-        var item = new GraphSeriesItem();
-        item.name = this.getFormattedDate(m.tankMeasurementDatetime);
-        item.value = m.value;
-        graph.series.push(item);
-  
-      });
-
-      var graphSeriesWrapper = [];
-      graphSeriesWrapper.push(graph);
-      graphSeriesWrapper.push(highNominalGraph);
-      graphSeriesWrapper.push(lowNominalGraph);
-      //this.referenceLines.push(highNominalGraph);
-      //this.referenceLines.push(lowNominalGraph);
-      this.dataSource = graphSeriesWrapper;
-      this.hideGraph = false;
-      
+      this.loadChartData(data, result);    
     }, 
     error => console.error(error));
-
   }
+
   async loadDataFromTankSelection(value: MatSelectChange) {
     this.selectedTankTypeId = value.value;   
     if(!this.selectedTankMeasurementTypeId) {
@@ -181,17 +182,12 @@ export class TankMeasurementDetailComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    //this.tankMeasurementsWidget.clearData();
   }
 
-  dataLoaded (data: TankMeasurement[]){
-    console.log('dataload received event from widget');
-
+  dataLoaded(data: TankMeasurement[]){
     this.updateGraph(data);
   }
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
-
-
 }
