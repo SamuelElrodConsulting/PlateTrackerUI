@@ -24,4 +24,6 @@
 <hr>
 <app-tank-measurement-widget #tankMeasurementsWidget (dataLoaded)="dataLoaded($event)"></app-tank-measurement-widget>
 <br>
-<div echarts [options]="options" class="demo-chart" [hidden]="hideGraph" [theme]="theme" ></div>
+
+
+<div echarts [options]="options" class="demo-chart" [hidden]="hideGraph" [theme]="theme" style="min-height:600px" ></div>

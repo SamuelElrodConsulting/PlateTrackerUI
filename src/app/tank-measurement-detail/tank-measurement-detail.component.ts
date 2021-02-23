@@ -11,6 +11,7 @@ import { GraphInfo } from '../models/graphInfo';
 import { GraphSeriesItem } from '../models/graphSeriesItem';
 import { TankMeasurement } from '../models/tank-measurement';
 import { Chart } from '../models/chart';
+import { graphic } from 'echarts';
 
 @Component({
   selector: 'app-tank-measurement-detail',
@@ -23,6 +24,8 @@ export class TankMeasurementDetailComponent implements OnInit {
   options: any;
   theme: string = 'dark';
   hideGraph = true;
+
+  mainDataColor = 'rgba(30,144,255, 0.6)';
 
   currentTank: TankType;
   currentMeasurement: TankMeasurementType;
@@ -60,23 +63,28 @@ export class TankMeasurementDetailComponent implements OnInit {
   }
 
   getFormattedDate(date) {
-    return date.substring(0,10);
+    return date;
+    //return date.substring(0,10);
   }
 
   loadChartData(data: TankMeasurement[], result: Chart) {
     this.hideGraph = false;
     var currentTank = this.getCurrentTank();
     var currentMeasurementType =this.getCurrentMeasurementType();
-    const xAxisData = [];
     const mainData = [];
     const highData = [];
     const lowData = [];
+    const idealData = [];
 
     data.forEach(m=> {
-      xAxisData.push(this.getFormattedDate(m.tankMeasurementDatetime));
-      mainData.push(m.value);
-      highData.push(result.highValue);
-      lowData.push(result.lowValue);
+      const mainArrayDataItem = [new Date(m.tankMeasurementDatetime), m.value];
+      const highArrayDataItem = [new Date(m.tankMeasurementDatetime), result.highValue];
+      const lowArrayDataITem = [new Date(m.tankMeasurementDatetime), result.lowValue];
+      const idealArrayDataItem = [new Date(m.tankMeasurementDatetime), result.idealValue]
+      mainData.push(mainArrayDataItem);
+      highData.push(highArrayDataItem);
+      lowData.push(lowArrayDataITem);
+      idealData.push(idealArrayDataItem);
     });
     var colors = ['#5470C6', '#91CC75', '#EE6666'];
 
@@ -88,7 +96,9 @@ export class TankMeasurementDetailComponent implements OnInit {
           }
       },
       toolbox: {
-        feature: {
+        feature: {dataZoom: {
+            yAxisIndex: 'none'
+        },
             dataView: {show: true, readOnly: false},
             restore: {show: true},
             saveAsImage: {show: true}
@@ -105,11 +115,11 @@ export class TankMeasurementDetailComponent implements OnInit {
         x: 'center'
       },
       xAxis: {
-        data: xAxisData,
         silent: false,
         splitLine: {
           show: false,
         },
+        type: 'time',
         name: 'Date',
         nameLocation: 'middle',
         nameGap: 50,
@@ -136,7 +146,18 @@ export class TankMeasurementDetailComponent implements OnInit {
           name: currentMeasurementType.tankMeasurementTypeName + ', ' + currentMeasurementType.uom,
           type: 'bar',
           data: mainData,
-          animationDelay: (idx) => idx * 10,
+          itemStyle: {
+            color: new graphic.LinearGradient(0, 0, 0, 1, [{
+                offset: 0,
+                color: this.mainDataColor
+              },
+              {
+                offset: 1,
+                color: this.mainDataColor
+              }
+            ])
+          },
+          animationDelay: (idx) => idx * 10
         },
         {
           name: 'High Nominal Threshold',
@@ -149,6 +170,60 @@ export class TankMeasurementDetailComponent implements OnInit {
           type: 'line',
           data: lowData,
           animationDelay: (idx) => idx * 10 + 100,
+        },
+        {
+          name: 'Ideal Nominal Threshold',
+          type: 'line',
+          data: idealData,
+          animationDelay: (idx) => idx * 10 + 100,
+        },
+        {
+          name: 'Tank Additions - 1',
+          type: 'scatter',
+          data: [],
+          markLine: {
+            label:{
+              offset:[10,25],
+              align: 'left'
+            },
+            data: [   
+                    [
+                      {name: '25 lb - Caustic Soda', xAxis: '2021-02-03', yAxis: 0},
+                      {name: 'a', xAxis: '2021-02-03', yAxis: 13},
+                    ],
+                    [
+                      {name: '10 gal - H20', xAxis: '2021-02-03', yAxis: 0},
+                      {name: 'a', xAxis: '2021-02-03', yAxis: 11.5},
+                    ]
+                  ]
+          }
+        },
+        {
+          name: 'Tank Additions - 2',
+          type: 'scatter',
+          data: [],
+          markLine: {
+            label:{
+              offset:[10,25],
+              align: 'left',
+            },
+            data: [   
+                    [
+                      {name: '110 lb - Caustic Soda', xAxis: '2021-02-09', yAxis: 0, lineStyle: {
+                        normal: {
+                          type:'solid',
+                          color: 'blue',
+                        }
+                      }},
+                      {name: 'a', xAxis: '2021-02-09', yAxis: 13, lineStyle: {
+                        normal: {
+                          type:'solid',
+                          color: 'blue',
+                        }
+                      }},
+                    ]
+                  ]
+          }
         }
       ],
       animationEasing: 'elasticOut',
