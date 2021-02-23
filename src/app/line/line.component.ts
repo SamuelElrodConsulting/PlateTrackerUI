@@ -51,7 +51,7 @@ export class LineComponent implements OnInit {
   addNewLine() {
     var addLine = new Line();
     addLine.lineName = this.newLineName;
-    addLine.lineDescription = this.newLineName;
+    addLine.lineDescription = this.newLineDescription ;
     addLine.lineTypeId = this.newLineTypeId;
 
     this.http.post<Line>('/api/' + 'Line', addLine).subscribe(result => {
